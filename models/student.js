@@ -1,34 +1,41 @@
-const{Schemma, model} = requiere('mongoose');
+const{Schema, model} = require('mongoose');
 
-const StudentSchemma = Schemma({
-    nombre:{
+const StudentSchema = Schema({
+    name:{
         type: [true, 'El Nombre es un capo obligatorio']
     },
     email:{
         type:String,
-        requiere: [true, 'El correo es un campo obligatorio'],
+        require: [true, 'El correo es un campo obligatorio'],
         unique: true
     },
     password:{
         type:String,
-        requiere: [true, 'La contraseña es un campo obligatorio']
+        require: [true, 'La contraseña es un campo obligatorio']
     },
     role:{
         type: String,
         default: "STUDENT_ROLE"
     },
-    grado:{
+    grade:{
         type: String,
         require: [true, 'El grado es un campo obligatorio']
     },
-    cursos:{
+    course:{
         type: [String],
         default: []
     },
-    estado:{
+    state:{
         type: Boolean,
         default: true
     }
 });
 
-module.exports = model('Student', StudentSchemma);
+/*StudentSchema.methods.toJSON = function(){
+    const{ __v, password, _id, ...student} = this.toObject();
+    student.uid = _id;
+    return student;
+};*/
+
+
+module.exports = model('Student', StudentSchema); 
