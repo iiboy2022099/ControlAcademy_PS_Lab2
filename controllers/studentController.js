@@ -1,2 +1,2 @@
 const bcryptjs = require('bcryptjs');
-const Student = requiere('.')
+const Student = requiere('../')
